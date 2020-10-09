@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
 #Creds
-
+creds.json
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
