@@ -10,7 +10,9 @@ Since I have big playlists on youtube and I hate it when something like that hap
 `
 {
     "YT_API_KEY": "your youtube api key here",
-    "TARGET_PLAYLIST_ID": "your playlist id here"
+    "PLAYLISTS":{
+        "playlist1": "your playlist id here",
+        "playlist2": "your playlist id here"} 
 }
 `  
 3.Get your Youtube api key from Google APIs  
