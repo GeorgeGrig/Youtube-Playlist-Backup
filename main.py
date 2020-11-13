@@ -3,7 +3,9 @@
 # 2.Create a file named creds.json and populate the values with the following structure
 #{
 #    "YT_API_KEY": "your youtube api key here",
-#    "TARGET_PLAYLIST_ID": "your playlist id here"
+#    "PLAYLISTS":{
+#        "playlist1": "your playlist id here",
+#        "playlist2": "your playlist id here"} 
 #}
 # 3.Get your Youtube api key from Google APIs
 # 4.Get your Google Drive client_secret.json from Google APIs
