@@ -24,10 +24,10 @@ from googleapiclient.errors import HttpError
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 client = gspread.authorize(creds)
-sheet = client.open("PlaylistBackup").sheet1 #which already shared google sheet to access 
+ 
 with open("creds.json", "r") as read_file:
     data = json.load(read_file)
-TARGET = data["TARGET_PLAYLIST_ID"]
+
 
 #Fetch all playlist entries using the youtube api
 def fetch_all_youtube_videos(playlistId):
@@ -92,7 +92,12 @@ def cross_check(backup,videos):
                 sheet.update_cell(i+1, 2, f"We got bamboozled, backup was '{item}' and new item is '{videos[i-1]}'")
 
 if __name__ == '__main__':
-    videos = fetch_all_youtube_videos(TARGET)
-    backup = read_backup()
-    cross_check(backup,videos)
-    write_backup(videos)
+    playlists = data["PLAYLISTS"].values()
+    i = 0
+    for playlist in playlists:
+        sheet = client.open("PlaylistBackup").get_worksheet(i) #which already shared google sheet to access
+        videos = fetch_all_youtube_videos(playlist)
+        backup = read_backup()
+        cross_check(backup,videos)
+        write_backup(videos)
+        i += 1
