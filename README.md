@@ -6,7 +6,7 @@ Since I have big playlists on youtube and I hate it when something like that hap
 
 ## Getting started  
 * Install dependencies  
-* Create a file named creds.json and populate the values with the following structure  
+* Create a file named creds.json and populate the values with the following structure:  
 `
 {
     "YT_API_KEY": "your youtube api key here",
@@ -15,7 +15,7 @@ Since I have big playlists on youtube and I hate it when something like that hap
         "playlist2": "your playlist id here"} 
 }
 `  
-* Get your Youtube api key from Google APIs  
-* Get your Google Drive client_secret.json from Google APIs  
-* Share your target document with the email address found on your client_secret.json under "client_email"  
+* Get your Youtube api key from Google APIs.  
+* Get your Google Drive client_secret.json from Google APIs.  
+* Share your target document with the email address found on your client_secret.json under "client_email".  
 
