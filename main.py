@@ -3,7 +3,9 @@
 # 2.Create a file named creds.json and populate the values with the following structure
 #{
 #    "YT_API_KEY": "your youtube api key here",
-#    "TARGET_PLAYLIST_ID": "your playlist id here"
+#    "PLAYLISTS":{
+#        "playlist1": "your playlist id here",
+#        "playlist2": "your playlist id here"} 
 #}
 # 3.Get your Youtube api key from Google APIs
 # 4.Get your Google Drive client_secret.json from Google APIs
@@ -79,17 +81,30 @@ def read_backup():
 #Check line by line if there are any changes and document them
 def cross_check(backup,videos):
     i = 0
+    names = sheet.col_values(1)
+    checks = sheet.col_values(2)
     for item in backup:
         if item == "BACKUP":
             print('first line, ignoring')
-        elif item in videos[i]:
+        elif item in videos:
             i+=1
         elif item == "":
             i+=1
+        elif checks == []:
+            i+=1
+            if names[i+2] != "":
+                time.sleep(1.1)
+                sheet.update_cell(i+1, 2, f"We got bamboozled, backup was '{item}' and new item is '{videos[i-1]}'")
         else:
             i+=1
-            if sheet.cell(i+1, 2).value == "" and sheet.cell(i+1, 1).value != "":
-                sheet.update_cell(i+1, 2, f"We got bamboozled, backup was '{item}' and new item is '{videos[i-1]}'")
+            try:
+                if checks[i+2] == "" and names[i+2] != "":
+                    time.sleep(1.1)
+                    sheet.update_cell(i+1, 2, f"We got bamboozled, backup was '{item}' and new item is '{videos[i-1]}'")
+            except:
+                if names[i+2] != "":
+                    time.sleep(1.1)
+                    sheet.update_cell(i+1, 2, f"We got bamboozled, backup was '{item}' and new item is '{videos[i-1]}'")
 
 if __name__ == '__main__':
     playlists = data["PLAYLISTS"].values()
